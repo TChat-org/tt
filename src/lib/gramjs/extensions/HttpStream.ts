@@ -43,9 +43,13 @@ class HttpStream {
 
     static getURL(ip: string, port: number, testServers: boolean, isPremium: boolean) {
         if (port === 443) {
-            return `https://${ip}:${port}/apiw1${testServers ? '_test' : ''}${isPremium ? '_premium' : ''}`;
+            console.log(`https://${ip}:${port}/apiw1${testServers ? '_test' : ''}${isPremium ? '_premium' : ''}`);
+            // return `https://${ip}:${port}/apiw1${testServers ? '_test' : ''}${isPremium ? '_premium' : ''}`;
+            return `http://127.0.0.1:8801/apiw1${testServers ? '_test' : ''}${isPremium ? '_premium' : ''}`;
         } else {
-            return `http://${ip}:${port}/apiw1${testServers ? '_test' : ''}${isPremium ? '_premium' : ''}`;
+            console.log(`http://${ip}:${port}/apiw1${testServers ? '_test' : ''}${isPremium ? '_premium' : ''}`);
+            // return `http://${ip}:${port}/apiw1${testServers ? '_test' : ''}${isPremium ? '_premium' : ''}`;
+            return `http://127.0.0.1:8801/apiw1${testServers ? '_test' : ''}${isPremium ? '_premium' : ''}`;
         }
     }
 
@@ -60,7 +64,8 @@ class HttpStream {
         await fetch(this.url, {
             method: 'POST',
             body: Buffer.from([]),
-            mode: 'cors',
+            // mode: 'cors',
+            mode: 'no-cors',
             signal: AbortSignal.timeout(REQUEST_TIMEOUT),
         });
 

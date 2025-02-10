@@ -38,9 +38,22 @@ const {
   APP_TITLE = DEFAULT_APP_TITLE,
 } = process.env;
 
+// const CSP = `
+//   default-src 'self';
+//   connect-src 'self' wss://*.web.teamgram.net blob: http: https: ${APP_ENV === 'development' ? 'wss:' : ''};
+//   script-src 'self' 'wasm-unsafe-eval' https://t.me/_websync_ https://telegram.me/_websync_;
+//   style-src 'self' 'unsafe-inline';
+//   img-src 'self' data: blob: https://ss3.4sqi.net/img/categories_v2/
+//   ${IS_PACKAGED_ELECTRON ? `${BASE_URL}/` : ''};
+//   media-src 'self' blob: data: ${IS_PACKAGED_ELECTRON ? [`${BASE_URL}/`, ELECTRON_HOST_URL].join(' ') : ''};
+//   object-src 'none';
+//   frame-src http: https:;
+//   base-uri 'none';
+//   form-action 'none';`
+//   .replace(/\s+/g, ' ').trim();
 const CSP = `
   default-src 'self';
-  connect-src 'self' wss://*.web.teamgram.net blob: http: https: ${APP_ENV === 'development' ? 'wss:' : ''};
+  connect-src 'self' ws://127.0.0.1:11443 blob: http: https: ${APP_ENV === 'development' ? 'apiws:' : ''};
   script-src 'self' 'wasm-unsafe-eval' https://t.me/_websync_ https://telegram.me/_websync_;
   style-src 'self' 'unsafe-inline';
   img-src 'self' data: blob: https://ss3.4sqi.net/img/categories_v2/
@@ -62,7 +75,8 @@ export default function createConfig(
     target: 'web',
 
     devServer: {
-      port: 1234,
+      // port: 1234,
+      port: 54321,
       host: '0.0.0.0',
       allowedHosts: 'all',
       hot: false,

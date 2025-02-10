@@ -68,9 +68,11 @@ class PromisedWebSockets {
 
     getWebSocketLink(ip, port, testServers, isPremium) {
         if (port === 443) {
-            return `wss://${ip}:${port}/apiws${testServers ? '_test' : ''}${isPremium ? '' : ''}`;
+            // return `wss://${ip}:${port}/apiws${testServers ? '_test' : ''}${isPremium ? '' : ''}`;
+            return `ws://127.0.0.1:11443/apiws${testServers ? '_test' : ''}${isPremium ? '' : ''}`;
         } else {
-            return `ws://${ip}:${port}/apiws${testServers ? '_test' : ''}${isPremium ? '' : ''}`;
+            // return `ws://${ip}:${port}/apiws${testServers ? '_test' : ''}${isPremium ? '' : ''}`;
+            return `ws://127.0.0.1:11443/apiws${testServers ? '_test' : ''}${isPremium ? '' : ''}`;
         }
     }
 
